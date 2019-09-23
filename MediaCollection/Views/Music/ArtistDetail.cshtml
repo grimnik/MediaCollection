@@ -1,0 +1,24 @@
+﻿@model  MusicDetailViewModel
+    <div class="jumbotron">
+        <h1>@Model.ArtistName</h1>
+        @if (Model.Albums.Count() == 0)
+        {
+            <p>No Albums found!</p>
+            foreach (var song in Model.Songs)
+            {
+                <p>- @song.Title</p>
+            }
+        }
+        else
+        {
+
+            @foreach (var item in Model.Albums)
+            {
+                <p>@item.Naam</p>
+                foreach (var song in item.Songs)
+                {
+                    <p>- @song.Title</p>
+                }
+            }
+        }
+    </div>

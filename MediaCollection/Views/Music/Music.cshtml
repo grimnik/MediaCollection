@@ -1,0 +1,20 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@model  IEnumerable<MusicListViewModel>
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <a class="btn btn-dark text-danger" asp-action="SongCreate" asp-controller="Music" role="button">Create-A-Song</a>
+    <a class="btn btn-dark text-danger" asp-action="AlbumCreate" asp-controller="Music" role="button">Create-A-Album</a>
+    <a class="btn btn-dark text-danger" asp-action="ArtistCreate" asp-controller="Music" role="button">Create-A-Artist</a>
+
+}
+@foreach (var item in Model)
+{
+<div class="jumbotron">
+    <h1>@item.Naam</h1>
+    <a class="btn btn-dark text-danger" asp-route-id="@item.Id" asp-action="ArtistDetail" asp-controller="Music" role="button">Details</a>
+</div>
+}

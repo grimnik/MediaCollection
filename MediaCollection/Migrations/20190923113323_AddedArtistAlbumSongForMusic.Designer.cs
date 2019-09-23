@@ -4,14 +4,16 @@ using MediaCollection.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MediaCollection.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190923113323_AddedArtistAlbumSongForMusic")]
+    partial class AddedArtistAlbumSongForMusic
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,7 +65,7 @@ namespace MediaCollection.Migrations
 
                     b.Property<string>("Naam");
 
-                    b.Property<TimeSpan>("ReleaseDate");
+                    b.Property<DateTime>("ReleaseDate");
 
                     b.Property<int?>("SongsId");
 
@@ -99,7 +101,7 @@ namespace MediaCollection.Migrations
 
                     b.HasKey("AlbumId", "ArtistId", "SongId");
 
-                    b.ToTable("ArtistAlbumSongs");
+                    b.ToTable("ArtistAlbumSong");
                 });
 
             modelBuilder.Entity("MediaCollection.Domain.Movie", b =>
@@ -133,7 +135,7 @@ namespace MediaCollection.Migrations
 
                     b.Property<int?>("ArtistId");
 
-                    b.Property<TimeSpan>("Duration");
+                    b.Property<DateTime>("Duration");
 
                     b.Property<string>("Title");
 
