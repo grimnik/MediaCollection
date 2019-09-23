@@ -1,0 +1,16 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@model  IEnumerable<AfspeelLijstDetailViewModel>
+
+@foreach (var item in Model)
+{
+   <div class="jumbotron">
+       <h1>@item.Naam</h1>
+       <p>Made by @item.UserCreator</p>
+       @foreach (var title in item.MovieTitles)
+       {
+           <p>- @title</p>
+       }
+   </div>
+}

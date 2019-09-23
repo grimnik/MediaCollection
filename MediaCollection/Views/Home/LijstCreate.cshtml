@@ -1,0 +1,22 @@
+﻿@model  HomeLijstCreateViewModel
+@{
+    ViewData["Title"] = "AfspeelLijstCreate";
+}
+<p>@ViewData["Title"] </p>
+
+<form asp-action="LijstCreate" method="post" asp-controller="Home">
+    <div class="form-group">
+        <label asp-for="Naam"></label>
+        <input asp-for="Naam" class="form-control" />
+        <span asp-validation-for="Naam"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="SelectedMovie"></label>
+        <select asp-for="SelectedMovie" asp-items="@Model.MovieList"></select>
+     
+</div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-dark text-danger" value="Create!"/>
+    </div>
+
+</form>

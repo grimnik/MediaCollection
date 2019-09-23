@@ -1,0 +1,32 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@model  IEnumerable<MovieListViewModel>
+@{
+    ViewData["Title"] = "Movies";
+}
+<p>@ViewData["Title"] </p>
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <a class="btn btn-dark text-danger" asp-action="MovieCreate" asp-controller="Movie" role="button">Create-A-Movie</a>
+}
+@foreach (var item in Model)
+{
+<div class="jumbotron">
+    <h1>@item.Title</h1>
+    @if (item.Foto != null)
+    {
+        var base64 = Convert.ToBase64String(item.Foto);
+        var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+        <img src="@imgSrc" alt="@item.Title" />
+    }
+    <hr class="my-4" >
+    <p>Released: @item.ReleaseDate.Value.ToLongDateString()</p>
+    <p>@item.Beschrijving</p>
+    @if (User.IsInRole("Admin"))
+    {
+        <a class="btn btn-dark text-danger" asp-action="MovieEdit" asp-controller="Movie" asp-route-id="@item.Id">Edit</a>
+    }
+</div>
+}

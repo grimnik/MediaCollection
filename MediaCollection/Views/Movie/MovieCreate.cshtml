@@ -1,0 +1,43 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@model MediaCollection.Models.MovieCreateViewModel
+@{
+    ViewData["Title"] = "Create-a-Movie";
+}
+<h1>@ViewData["Title"] </h1>
+<hr class="my-4" />
+<p>Fill out this form to create a movie!</p>
+
+<form asp-action="MovieCreate" asp-controller="Movie" role="form" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="Title"></label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Beschrijving"></label>
+        <textarea asp-for="Beschrijving" class="form-control" ></textarea>
+        <span asp-validation-for="Beschrijving" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ReleaseDate"></label>
+        <input type="date" asp-for="ReleaseDate" />
+        <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Foto"></label>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Upload</span>
+            </div>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="inputGroupFile01" asp-for="Foto">
+                <label class="custom-file-label" for="inputGroupFile01">Choose File</label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-dark text-danger" value="Create!" />
+    </div>
+</form>

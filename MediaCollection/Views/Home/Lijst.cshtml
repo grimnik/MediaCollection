@@ -1,0 +1,21 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@{
+    ViewData["Title"] = "Afspeellijsten";
+}
+@model  IEnumerable<AfspeelLijstListViewModel>
+<p>@ViewData["Title"] </p>
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <a class="btn btn-dark text-danger" asp-action="LijstCreate" asp-controller="Home" role="button">Create-A-List</a>
+}
+
+@foreach (var item in Model)
+{
+    <div class="jumbotron">
+        <h1>@item.Naam</h1>
+        <a class="btn btn-dark text-danger" asp-action="AfspeelDetail" asp-controller="Home" asp-route-id="@item.Id" role="button">Details</a>
+    </div>
+}
