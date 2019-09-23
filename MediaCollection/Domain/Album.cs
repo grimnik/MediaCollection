@@ -14,5 +14,6 @@ namespace MediaCollection.Domain
         public Artist Artist { get; set; }
         public TimeSpan ReleaseDate { get; set; }
         public ICollection<Songs> Songs { get; set; }
+        public byte[] Cover { get; set; }
     }
 }

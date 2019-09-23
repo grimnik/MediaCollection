@@ -123,5 +123,9 @@ namespace MediaCollection.Controllers
 
             return View(musicDetail);
         }
+        public IActionResult AlbumCreate()
+        {
+            return View();
+        }
     }
 }

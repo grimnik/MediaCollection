@@ -171,5 +171,6 @@ namespace MediaCollection.Controllers
             vm = afspeelLijstDetailViewModel;
             return View(vm);
         }
+        
     }
 }
