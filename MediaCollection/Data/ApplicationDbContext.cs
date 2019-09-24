@@ -16,6 +16,9 @@ namespace MediaCollection.Data
         public DbSet<Songs> Songs { get; set; }
         public DbSet<Album> Albums { get; set; }
         public DbSet<ArtistAlbumSong> ArtistAlbumSongs { get; set; }
+        public DbSet<Serie> Series { get; set; }
+        public DbSet<Seizoen> Seizoenen { get; set; }
+        public DbSet<Aflevering> Afleveringen { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -23,6 +26,9 @@ namespace MediaCollection.Data
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<Serie>().HasMany(s => s.Seizoenen);
+            builder.Entity<Seizoen>().HasMany(s => s.Afleveringen);
+            
             builder.Entity<Album>().HasMany(a =>  a.Songs );
             builder.Entity<Songs>().HasMany(s => s.Albums);
             builder.Entity<ArtistAlbumSong>().HasKey(aas => new { aas.AlbumId, aas.ArtistId, aas.SongId });

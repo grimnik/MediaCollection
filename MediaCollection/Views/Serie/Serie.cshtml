@@ -1,0 +1,8 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <a class="btn btn-dark text-danger" asp-action="SerieCreate" asp-controller="Serie" role="button">Create-A-Serie</a>
+}

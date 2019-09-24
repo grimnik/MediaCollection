@@ -1,4 +1,13 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿function addInputForSeizoen() {
 
-// Write your JavaScript code.
+    var input = document.getElementById("seizoen");
+
+    input.insertAdjacentHTML("afterend", " <a>1</a>")
+    input.classList("form-control btn btn-outline-dark")
+    return input;
+
+}
+var form = document.getElementById('seizoenPart');
+document.getElementById('addSeizoen').addEventListener('click', function (e) {
+    form.appendChild(addInputForSeizoen());
+});
