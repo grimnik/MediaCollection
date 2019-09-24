@@ -15,5 +15,6 @@ namespace MediaCollection.Models
         public TimeSpan Duration { get; set; }
         [Required]
         public Artist Artist { get; set; }
+        public Album Album { get; set; }
     }
 }

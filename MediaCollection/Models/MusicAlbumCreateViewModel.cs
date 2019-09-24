@@ -9,9 +9,9 @@ namespace MediaCollection.Models
 {
     public class MusicAlbumCreateViewModel
     {
-        public string Title { get; set; }
-        public ICollection<Songs> Songs { get; set; }
-        public Artist Artist { get; set; }
+        public string Naam { get; set; }
+       
+        public string Artist { get; set; }
         public IFormFile Cover { get; set; }
     }
 }

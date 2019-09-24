@@ -1,12 +1,22 @@
-﻿@model  MusicDetailViewModel
+﻿@model MusicDetailViewModel
     <div class="jumbotron">
         <h1>@Model.ArtistName</h1>
         @if (Model.Albums.Count() == 0)
         {
             <p>No Albums found!</p>
-            foreach (var song in Model.Songs)
+            if (Model.Songs.Count() != 0)
             {
-                <p>- @song.Title</p>
+
+                foreach (var song in Model.Songs)
+                {
+                    <p>- @song.Title</p>
+                }
+            }
+            else
+            {
+                <p>No Songs Found!</p>
+                <a class="btn btn-dark text-danger" role="button" asp-action="SongCreate" asp-controller="Music" >Create-A-Song</a>
+
             }
         }
         else
@@ -15,9 +25,25 @@
             @foreach (var item in Model.Albums)
             {
                 <p>@item.Naam</p>
-                foreach (var song in item.Songs)
+                if (item.Cover != null)
                 {
-                    <p>- @song.Title</p>
+                    var base64 = Convert.ToBase64String(item.Cover);
+                    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                    <img src="@imgSrc" alt="@item.Naam + AlbumCover"/>
+                }
+                if (Model.Songs.Count() != 0)
+                {
+
+                    foreach (var song in Model.Songs)
+                    {
+                        <p>- @song.Title</p>
+                    }
+                }
+                else
+                {
+                    <p>No Songs Found!</p>
+                    <a class="btn btn-dark text-danger" role="button" asp-action="SongCreate" asp-controller="Music">Create-A-Song</a>
+
                 }
             }
         }
