@@ -1,4 +1,6 @@
 ﻿using MediaCollection.Data;
+using MediaCollection.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -21,6 +23,12 @@ namespace MediaCollection.Controllers
         public IActionResult SerieCreate()
         {
             return View();
+        }
+       [HttpPost]
+        public IActionResult MaakSerie(SerieCreateViewModel model)
+        {
+           
+           return null;
         }
         
     }
