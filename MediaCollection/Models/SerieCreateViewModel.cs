@@ -10,16 +10,21 @@ namespace MediaCollection.Models
     {
         public string Naam { get; set; }
 
-        public SeizoenCreate[] Seizoenen {get;set;}
+        public List<SeizoenCreate> Seizoen { get; set; }
+       
+       
 
-        //public Seizoen Seizoen { get; set; }
-        //public Aflevering Aflevering { get; set; }
-        public int[] Hoeveelste { get; set; }
+      
     }
 
     public class SeizoenCreate
     {
+        public List<AfleveringCreate> Afleveringen { get; set; }
         public int Nummer { get; set; }
-        public string[] Afleveringen { get; set; }
+    }
+    public class AfleveringCreate
+    {
+        
+        public string Naam { get; set; }
     }
 }

@@ -28,7 +28,7 @@ namespace MediaCollection.Controllers
         public IActionResult MaakSerie(SerieCreateViewModel model)
         {
            
-           return null;
+           return View(model);
         }
         
     }
