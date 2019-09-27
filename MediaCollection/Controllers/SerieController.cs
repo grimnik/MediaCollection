@@ -1,4 +1,5 @@
 ﻿using MediaCollection.Data;
+using MediaCollection.Domain;
 using MediaCollection.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -27,8 +28,48 @@ namespace MediaCollection.Controllers
        [HttpPost]
         public IActionResult MaakSerie(SerieCreateViewModel model)
         {
-           
-           return View(model);
+            if (!TryValidateModel(model))
+            {
+                return View(model);
+            }
+            
+            List<Seizoen> Seizoenen = new List<Seizoen>();
+            foreach (var item in model.Seizoen)
+            {
+            List<Aflevering> Afleveringen = new List<Aflevering>();
+                    int teller = 0;
+                foreach (var item2 in item.Afleveringen)
+                {
+                    teller++;
+                    if (item2 == null)
+                    {
+                        return RedirectToAction("SerieCreate", "Serie", model);
+                        
+                    }
+                    Aflevering aflevering = new Aflevering()
+                    {
+                        Naam = item2.Naam,
+                        Beschrijving = item2.Beschrijving,
+                        Hoeveelste = teller
+                    };
+                    Afleveringen.Add(aflevering);
+                }
+                Seizoen seizoen = new Seizoen()
+                {
+                    Hoeveelste = item.Nummer,
+                    Afleveringen = Afleveringen
+                };
+                Seizoenen.Add(seizoen);
+            }
+            var serie = new Serie()
+            {
+                Naam = model.Naam,
+                Seizoenen = Seizoenen
+            };
+            _appContext.Series.Add(serie);
+            _appContext.SaveChanges();
+
+           return RedirectToAction("Serie","Serie");
         }
         
     }

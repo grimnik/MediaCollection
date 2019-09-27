@@ -9,7 +9,7 @@ namespace MediaCollection.Models
     public class SerieCreateViewModel
     {
         public string Naam { get; set; }
-
+        
         public List<SeizoenCreate> Seizoen { get; set; }
        
        
@@ -21,6 +21,7 @@ namespace MediaCollection.Models
     {
         public List<AfleveringCreate> Afleveringen { get; set; }
         public int Nummer { get; set; }
+        
     }
     public class AfleveringCreate
     {

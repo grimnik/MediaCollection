@@ -9,7 +9,7 @@ namespace MediaCollection.Domain
     {
         public int Id { get; set; }
         public int Hoeveelste { get; set; }
-
+        public string Beschrijving { get; set; }
         public string Naam { get; set; }
       
         public TimeSpan Duration { get; set; }

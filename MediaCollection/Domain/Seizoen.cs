@@ -10,6 +10,6 @@ namespace MediaCollection.Domain
         public int Id { get; set; }
         public int Hoeveelste { get; set; }
         
-        public Aflevering[] Afleveringen { get; set; }
+        public List<Aflevering> Afleveringen { get; set; }
     }
 }
