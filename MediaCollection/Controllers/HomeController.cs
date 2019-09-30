@@ -145,7 +145,7 @@ namespace MediaCollection.Controllers
             AfspeelLijst afspeelLijst = _appContext.AfspeelLijsten.FirstOrDefault(x => x.Id == id);
             var afspeellijstmovies = _appContext.AfspeelLijstMovies.ToArray();
             List<string> movieTitles = new List<string>();
-            AfspeelLijstDetailViewModel vm = new AfspeelLijstDetailViewModel();
+            List<AfspeelLijstDetailViewModel> vm = new List<AfspeelLijstDetailViewModel>();
             foreach (var item in afspeellijstmovies)
             {
                 if (item.AfspeelLijstId == id )
@@ -168,7 +168,7 @@ namespace MediaCollection.Controllers
                         
 
                     };
-            vm = afspeelLijstDetailViewModel;
+            vm.Add(afspeelLijstDetailViewModel);
             return View(vm);
         }
         
