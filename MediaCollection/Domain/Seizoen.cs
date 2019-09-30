@@ -9,7 +9,8 @@ namespace MediaCollection.Domain
     {
         public int Id { get; set; }
         public int Hoeveelste { get; set; }
-        
+        public int SerieId { get; set; }
+
         public List<Aflevering> Afleveringen { get; set; }
     }
 }

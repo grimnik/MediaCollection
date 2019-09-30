@@ -1,0 +1,21 @@
+﻿@model SerieDetailViewModel
+<h1>@Model.Naam</h1>
+@foreach (var item in Model.Seizoenen)
+{
+<div class="jumbotron">
+    <p>Seizoen: @item.Hoeveelste</p>
+
+    @foreach (var item2 in Model.Afleveringen)
+    {
+        if (item.Id == item2.SeizoenId)
+        {
+            <hr class="my-4" />
+            <p>Aflevering: @item2.Hoeveelste</p>
+            <p>Titel: @item2.Naam</p>
+            <p>Beschrijving: @item2.Beschrijving</p>
+
+        }
+    }
+    </div>
+        
+}

@@ -1,8 +1,17 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
+@model IEnumerable<SerieListViewModel>
 
 @if (SignInManager.IsSignedIn(User))
 {
     <a class="btn btn-dark text-danger" asp-action="SerieCreate" asp-controller="Serie" role="button">Create-A-Serie</a>
+}
+@foreach (var item in Model)
+{
+    <div class="jumbotron">
+        <p>@item.Naam</p>
+        <p>Seizoenen: @item.Seizoenen.Count().ToString()</p>
+        <a class="btn btn-dark text-danger" role="button" asp-action="SerieDetail" asp-controller="Serie" asp-route-id="@item.Id">Details</a>
+    </div>
 }

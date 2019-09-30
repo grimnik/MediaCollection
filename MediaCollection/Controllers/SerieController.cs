@@ -19,7 +19,26 @@ namespace MediaCollection.Controllers
         }
         public IActionResult Serie()
         {
-            return View();
+            List<SerieListViewModel> series = new List<SerieListViewModel>();
+            IEnumerable<Serie> seriesFromDb = _appContext.Series.ToArray();
+            IEnumerable<Aflevering> afleveringenFromDb = _appContext.Afleveringen.ToArray();
+            IEnumerable<Seizoen> seizoenenFromDb = _appContext.Seizoenen.ToArray();
+          
+            foreach (var item in seriesFromDb)
+            {
+               
+
+                series.Add(new SerieListViewModel()
+                {
+                    Id = item.Id,
+                    Naam = item.Naam,
+                    Seizoenen = seizoenenFromDb,
+                    Afleveringen = afleveringenFromDb
+
+                    
+                });
+            }
+            return View(series);
         }
         public IActionResult SerieCreate()
         {
@@ -56,6 +75,7 @@ namespace MediaCollection.Controllers
                 }
                 Seizoen seizoen = new Seizoen()
                 {
+                    
                     Hoeveelste = item.Nummer,
                     Afleveringen = Afleveringen
                 };
@@ -70,6 +90,30 @@ namespace MediaCollection.Controllers
             _appContext.SaveChanges();
 
            return RedirectToAction("Serie","Serie");
+        }
+        public IActionResult SerieDetail(int id)
+        {
+            Serie serieFromDb = _appContext.Series.FirstOrDefault(s => s.Id == id);
+            List<Seizoen> seizoenenFromDb = _appContext.Seizoenen.Where(s => s.SerieId == id).ToList();
+            List<Aflevering> afleveringen = new List<Aflevering>();
+            foreach (var item in seizoenenFromDb)
+            {
+                IEnumerable<Aflevering> afleveringenFromDb = _appContext.Afleveringen.Where(a => a.SeizoenId == item.Id);
+                foreach (var item2 in afleveringenFromDb)
+                {
+
+                afleveringen.Add(item2);
+                }
+            };
+
+
+            SerieDetailViewModel model = new SerieDetailViewModel()
+            {
+                Naam = serieFromDb.Naam,
+                Seizoenen = seizoenenFromDb,
+                Afleveringen = afleveringen
+            };
+            return View(model);
         }
         
     }
