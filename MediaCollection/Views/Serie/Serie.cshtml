@@ -11,7 +11,7 @@
 {
     <div class="jumbotron">
         <p>@item.Naam</p>
-        <p>Seizoenen: @item.Seizoenen.Count().ToString()</p>
+        <p>Seizoenen: @item.Seizoenen.Where(s => s.SerieId == item.Id).Count().ToString()</p>
         <a class="btn btn-dark text-danger" role="button" asp-action="SerieDetail" asp-controller="Serie" asp-route-id="@item.Id">Details</a>
     </div>
 }

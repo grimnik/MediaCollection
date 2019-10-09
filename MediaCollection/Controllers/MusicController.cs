@@ -226,6 +226,21 @@ namespace MediaCollection.Controllers
 
             return RedirectToAction("Music");
         }
+        public IActionResult ArtistCreate()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult CreateArtist(MusicArtistCreateViewModel model)
+        {
+            Artist artist = new Artist()
+            {
+                Naam = model.Naam
+            };
+            _appContext.Artists.Add(artist);
+            _appContext.SaveChanges();
+            return RedirectToAction("Music");
+        }
         public Artist CreateArtist(string naam)
         {
             Artist artist = new Artist()
